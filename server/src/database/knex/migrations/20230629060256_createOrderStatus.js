@@ -1,13 +1,12 @@
 exports.up = function(knex) {
-  return knex.schema.createTable("ingredients", table => {
+  return knex.schema.createTable("order_status", table => {
     table.uuid("id").primary()
     table.varchar("name").notNullable()
-    table.uuid("dish_id").references("id").inTable("dishes").onDelete("CASCADE").notNullable()
     table.timestamp("created_at").default(knex.fn.now())
     table.timestamp("updated_at").default(knex.fn.now())
   })
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable("ingredients")
+  return knex.schema.dropTable("order_status")
 };

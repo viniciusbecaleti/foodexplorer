@@ -89,7 +89,7 @@ class DishesController {
 
     await knex.transaction(async (trx) => {
       await trx("dishes").insert(dish)
-      
+
       for (const ingredient of ingredients) {
         await trx("ingredients").insert({
           id: uuid(),

@@ -12,11 +12,9 @@ function ensureAuthentication(req, res, next) {
   const [, token] = authHeader.split(" ")
 
   try {
-    const { data } = verify(token, authConfig.jwt.secret)
+    const { data: user } = verify(token, authConfig.jwt.secret)
 
-    req.user = {
-      ...data
-    }
+    req.user = user
 
     next()
   } catch (error) {
