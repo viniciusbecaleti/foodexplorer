@@ -5,36 +5,10 @@ const knex = require("../database/knex")
 const { v4: uuidv4 } = require("uuid")
 
 class UsersController {
-  async index(req, res) {
-    const { admin } = req.user
-
-    if (!admin) {
-      throw new AppError("Unauthorized", 401)
-    }
-
-    const users = await knex("users").select("*")
-
-    return res.json(users)
-  }
-
   async show(req, res) {
-    const { user_id } = req.params
-    const { id, admin } = req.user
-
-    if (user_id === id) {
-      const user = await knex("users").select("*").where({ id: user_id }).first()
-      return res.json(user)
-    }
-
-    if (!admin) {
-      throw new AppError("Unauthorized", 401)
-    }
+    const { id: user_id } = req.user
 
     const user = await knex("users").select("*").where({ id: user_id }).first()
-
-    if (!user) {
-      throw new AppError("User not found")
-    }
 
     return res.json(user)
   }
@@ -81,23 +55,7 @@ class UsersController {
   }
 
   async delete(req, res) {
-    const { user_id } = req.params
-    const { id, admin } = req.user
-
-    const user = await knex("users").select("*").where({ id: user_id }).first()
-
-    if (!user) {
-      throw new AppError("User not found")
-    }
-
-    if (user_id === id) {
-      await knex("users").where({ id }).delete()
-      return res.sendStatus(200)
-    }
-
-    if (!admin) {
-      throw new AppError("Unauthorized", 401)
-    }
+    const { id: user_id } = req.user
 
     await knex("users").where({ id: user_id }).delete()
 
