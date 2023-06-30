@@ -53,6 +53,8 @@ class DishesController {
       ingredients
     } = req.body
 
+    console.log(req.body)
+
     if (!name) {
       throw new AppError("Name is required")
     }
@@ -66,7 +68,7 @@ class DishesController {
     }
 
     if (!category_id) {
-      throw new AppError("Category_id is required")
+      throw new AppError("Category ID is required")
     }
 
     const categoryExists = await knex("categories").where({ id: category_id }).first()
@@ -97,9 +99,9 @@ class DishesController {
           dish_id: dish.id
         })
       }
-    })
 
-    res.sendStatus(201)
+      res.status(201).json({ dish_id: dish.id })
+    })
   }
 }
 
