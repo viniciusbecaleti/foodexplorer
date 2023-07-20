@@ -13,3 +13,25 @@ export const Input = styled.input`
     opacity: 1;
   }
 `
+
+export const SearchButton = styled.button`
+  border: none;
+  background: none;
+  color: ${({ theme }) => theme["light-100"]};
+  line-height: 0;
+`
+
+export const FloatingSearch = styled.div`
+  position: absolute;
+  bottom: -38rem;
+  left: 0;
+  right: 0;
+
+  width: calc(100% - 48rem);
+  margin-inline: auto;
+
+  input {
+    border: 2px solid ${({ theme }) => theme["cake-100"]};
+    box-shadow: none;
+  }
+`

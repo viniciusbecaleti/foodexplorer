@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export const Container = styled.header`
@@ -6,166 +7,114 @@ export const Container = styled.header`
 
 export const Content = styled.div`
   width: 100%;
-  height: 104rem;
   max-width: 1168rem;
   margin-inline: auto;
-  padding-inline: 24rem;
+  padding: 24rem;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 32rem;
 
-  button[data-button="open"] {
-    display: none;
+  position: relative;
 
-    color: ${({ theme }) => theme["light-100"]};
-    line-height: 0;
+  @media (max-width: 768px) {
+    gap: 16rem;
+  }
+`
 
-    border: none;
-    background: none;
+export const OpenMenu = styled.button`
+  border: none;
+  background: none;
+  line-height: 0;
+  color: ${({ theme }) => theme["light-100"]};
+`
+
+export const Logo = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0 8rem;
+
+  img {
+    width: 197rem;
   }
 
-  a.logo {
-    img {
-      width: 197rem;
-    }
+  span {
+    font-family: "Poppins", sans-serif;
+    font-size: 12rem;
+    color: ${({ theme }) => theme["cake-200"]};
   }
 
-  div.search {
+  @media (max-width: 768px) {
     flex: 1;
-    height: 48rem;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+`
+
+export const Nav = styled.nav`
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 32rem;
+
+  @media (max-width: 768px) {
+    flex: initial;
+  }
+`
+
+export const ButtonLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rem;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 14rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme["light-100"]};
+  white-space: nowrap;
+
+  padding: 12rem 32rem;
+  border-radius: 5px;
+  background: ${({ theme }) => theme["tomato-100"]};
+`
+
+export const Orders = styled(Link)`
+  line-height: 0;
+  color: ${({ theme }) => theme["light-100"]};
+  position: relative;
+
+  span {
+    position: absolute;
+    top: -5rem;
+    right: -5rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 5px;
-
-    background: ${({ theme }) => theme["dark-900"]};
-
-    input {
-      max-width: 344rem;
-      background: none;
-      box-shadow: none;
-    }
-
-    &:focus-within {
-      box-shadow: 0 0 0 2px ${({ theme }) => theme["cake-100"]};
-    }
-  }
-
-  button.search-mobile {
-    display: none;
-
-    line-height: 0;
-    color: ${({ theme }) => theme["light-100"]};
-
-    border: none;
-    border-radius: 5px;
-    background: none;
-
-    padding: 12rem;
-
-    &:hover {
-      background: ${({ theme }) => theme["dark-900"]};
-    }
-  }
-
-  a.button-link {
-    width: 216rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12rem;
+    width: 20rem;
+    height: 20rem;
 
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-size: 14rem;
-    color: ${({ theme }) => theme["light-100"]};
 
-    padding: 12rem 32rem;
-    border-radius: 5px;
+    border-radius: 50%;
 
     background: ${({ theme }) => theme["tomato-100"]};
-
-    &:hover {
-      background: ${({ theme }) => theme["tomato-200"]};
-    }
   }
+`
 
-  a.pedidos-mobile {
-    display: none;
-
-    color: ${({ theme }) => theme["light-100"]};
-    line-height: 0;
-
-    position: relative;
-
-    span {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      width: 20rem;
-      height: 20rem;
-
-      position: absolute;
-      top: -4rem;
-      right: -4rem;
-
-      font-family: "Poppins", sans-serif;
-      font-weight: 500;
-      font-size: 14rem;
-
-      border-radius: 50%;
-
-      background: ${({ theme }) => theme["tomato-200"]};
-    }
-  }
-
-  a.logout {
-    color: ${({ theme }) => theme["light-100"]};
-  }
-
-  @media (max-width: 1000px) {
-    gap: 16rem;
-
-    div.search {
-      display: none;
-    }
-
-    button.search-mobile {
-      display: block;
-    }
-
-    a.logo {
-      flex: 1;
-    }
-  }
-
-  @media (max-width: 768px) {
-    button[data-button="open"] {
-      display: block;
-    }
-
-    a.logo {
-      img {
-        margin: 0 auto;
-      }
-    }
-
-    a.button-link {
-      display: none;
-    }
-
-    a.pedidos-mobile {
-      display: block;
-    }
-
-    a.logout {
-      display: none;
-    }
-  }
+export const LogOut = styled.button`
+  border: none;
+  background: none;
+  line-height: 0;
+  color: ${({ theme }) => theme["light-100"]};
 `

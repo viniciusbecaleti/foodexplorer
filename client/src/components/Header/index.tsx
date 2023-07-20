@@ -1,59 +1,67 @@
-import { Link } from "react-router-dom"
-import { List, Receipt, MagnifyingGlass, SignOut } from "@phosphor-icons/react"
+import { List, Receipt, SignOut } from "@phosphor-icons/react"
 
-import { Container, Content } from "./styles"
+import { ButtonLink, Container, Content, LogOut, Logo, Nav, OpenMenu, Orders } from "./styles"
 
 import logo from "../../assets/logo.svg"
-import logoAdmin from "../../assets/logo_admin.svg"
 
-import { Input } from "../Input"
+import { Search } from "../Search"
+
+import { useWindowResize } from "../../hooks/useWindowResize"
 
 const user = {
-  admin: 1
+  admin: 0
 }
 
 export function Header() {
+  const [width, ] = useWindowResize()
+
   return (
     <Container>
       <Content>
-        <button data-button="open" type="button">
-          <List size={24} weight="bold" />
-        </button>
-
-        <Link className="logo" to="/">
-          <img src={user.admin ? logoAdmin : logo} alt="" />
-        </Link>
-
-        <div className="search">
-          <MagnifyingGlass size={24} weight="bold" />
-          <Input type="text" placeholder="Busque por pratos ou ingredientes" />
-        </div>
-
-        <button className="search-mobile" data-search="open" type="button">
-          <MagnifyingGlass size={24} weight="bold" />
-        </button>
-
-        {user.admin ? (
-          <Link className="button-link" to="/">
-            Novo prato
-          </Link>
-        ) : (
-          <Link className="button-link" to="/">
-            <Receipt size={24} />
-            Pedidos (0)
-          </Link>
+        {width <= 768 && (
+          <OpenMenu>
+            <List size={24} weight="bold" />
+          </OpenMenu>
         )}
 
-        {!user.admin && (
-          <Link className="pedidos-mobile" to="/pedidos">
-            <Receipt size={32} />
-            <span>0</span>
-          </Link>
-        )}
+        <Logo to="/">
+          <img src={logo} alt="" />
+          {!!user.admin && <span>admin</span>}
+        </Logo>
 
-        <Link className="logout" to="/sair">
-          <SignOut size={32} />
-        </Link>
+        <Nav>
+          <Search />
+
+          {width > 768 ? (
+            <>
+              {user.admin ? (
+                <ButtonLink to="/cadastrar-prato">
+                  Novo prato
+                </ButtonLink>
+              ) : (
+                <ButtonLink to="/pedidos">
+                  <Receipt size={24} weight="bold" />
+                  Pedidos (0)
+                </ButtonLink>
+              )}
+            </>
+          ) : (
+            <>
+              {!!user.admin === false && (
+                <Orders to="/pedidos">
+                  <Receipt size={32} />
+                  <span>0</span>
+                </Orders>
+              )}
+            </>
+          )}
+
+          {width > 768 && (
+            <LogOut type="button" aria-label="Sair">
+              <SignOut size={32} />
+            </LogOut>
+          )}
+        </Nav>
       </Content>
     </Container>
   )
