@@ -10,7 +10,6 @@ const MULTER = {
     destination: TMP_FOLDER,
     filename(req, file, callback) {
       const fileName = `${file.originalname}-${uuid()}`
-
       return callback(null, fileName)
     }
   })

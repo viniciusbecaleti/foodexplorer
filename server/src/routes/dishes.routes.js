@@ -13,6 +13,7 @@ const upload = multer(uploadConfig.MULTER)
 
 dishesRoutes.get("/", ensureAuthentication, dishesController.index)
 dishesRoutes.post("/", ensureAuthentication, ensureAdmin, dishesController.create)
+dishesRoutes.delete("/", ensureAuthentication, ensureAdmin, dishesController.delete)
 dishesRoutes.patch("/image", ensureAuthentication, ensureAdmin, upload.single("image"), dishImageController.update)
 
 module.exports = dishesRoutes

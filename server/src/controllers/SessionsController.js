@@ -29,7 +29,7 @@ class SessionsController {
     }
 
     const { secret, expiresIn } = authConfig.jwt
-    
+
     const token = sign({
       data: {
         id: user.id,

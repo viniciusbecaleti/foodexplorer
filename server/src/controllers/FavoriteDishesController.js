@@ -7,9 +7,9 @@ class FavoriteDishesController {
     const { id: user_id } = req.user
 
     const favoriteDishes = await knex("dishes")
-    .select("dishes.*")
-    .innerJoin("favorite_dishes", "dishes.id", "=", "favorite_dishes.dish_id")
-    .where({ user_id })
+      .select("dishes.*")
+      .innerJoin("favorite_dishes", "dishes.id", "=", "favorite_dishes.dish_id")
+      .where({ user_id })
 
     return res.send(favoriteDishes)
   }
