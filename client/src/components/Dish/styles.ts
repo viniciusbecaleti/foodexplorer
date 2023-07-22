@@ -13,21 +13,38 @@ export const Container = styled.article`
 
   text-align: center;
 
-  h3 {
-    font-size: 24rem;
-    font-weight: 700;
+  position: relative;
+
+  > button:first-child {
+    border: none;
+    background: none;
+    line-height: 0;
+
+    position: absolute;
+    top: 16rem;
+    right: 16rem;
+
     color: ${({ theme }) => theme["light-300"]};
   }
 
-  p {
+  img {
+    max-width: 88rem;
+    max-height: 88rem;
+  }
+
+  h3 {
     font-size: 14rem;
-    color: ${({ theme }) => theme["light-400"]};
-    line-height: 1.6;
+    font-weight: 500;
+    color: ${({ theme }) => theme["light-300"]};
   }
 
   strong {
     font-weight: 400;
-    font-size: 32rem;
     color: ${({ theme }) => theme["cake-200"]};
+  }
+
+  > button:last-child {
+    width: 100%;
+    padding-block: 4rem;
   }
 `

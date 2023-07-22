@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+
 import styled from "styled-components"
 
 export const Container = styled.header`
@@ -6,115 +7,168 @@ export const Container = styled.header`
 `
 
 export const Content = styled.div`
-  width: 100%;
+  height: 104rem;
   max-width: 1168rem;
   margin-inline: auto;
-  padding: 24rem;
+  padding-inline: 24rem;
 
   display: flex;
   align-items: center;
-  gap: 32rem;
+  gap: 16rem;
 
-  position: relative;
-
-  @media (max-width: 768px) {
-    gap: 16rem;
+  @media (min-width: 1025px) {
+    justify-content: space-between;
+    gap: 32rem;
   }
 `
 
-export const OpenMenu = styled.button`
+export const MenuButton = styled.button`
   border: none;
   background: none;
   line-height: 0;
   color: ${({ theme }) => theme["light-100"]};
+
+  @media (min-width: 1025px) {
+    display: none;
+  }
 `
 
-export const Logo = styled(Link)`
+export const Logo = styled.div`
+  flex: 1;
+
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
-  align-items: end;
+  align-items: center;
+  justify-content: center;
   gap: 0 8rem;
 
   img {
-    width: 197rem;
+    max-height: 32rem;
   }
 
   span {
-    font-family: "Poppins", sans-serif;
     font-size: 12rem;
     color: ${({ theme }) => theme["cake-200"]};
   }
 
-  @media (max-width: 768px) {
-    flex: 1;
-
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  @media (min-width: 1025px) {
+    flex: inherit;
+    justify-content: initial;
   }
 `
 
-export const Nav = styled.nav`
+export const InputWrapper = styled.div`
   flex: 1;
+
+  height: 56rem;
 
   display: flex;
   align-items: center;
-  justify-content: end;
-  gap: 32rem;
+  justify-content: center;
 
-  @media (max-width: 768px) {
-    flex: initial;
+  padding-inline: 32rem;
+  border-radius: 5px;
+
+  background: ${({ theme }) => theme["dark-900"]};
+
+  svg {
+    color: ${({ theme }) => theme["light-400"]};
+  }
+
+  input {
+    max-width: 344rem;
+    background: none;
+    box-shadow: none;
+  }
+
+  &:focus-within {
+    box-shadow: 0 0 0 2px ${({ theme }) => theme["cake-100"]};
+  }
+
+  @media (max-width: 1024px) {
+    display: none;
   }
 `
 
-export const ButtonLink = styled(Link)`
+export const Orders = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8rem;
-
-  font-family: "Poppins", sans-serif;
-  font-size: 14rem;
-  font-weight: 500;
   color: ${({ theme }) => theme["light-100"]};
-  white-space: nowrap;
 
-  padding: 12rem 32rem;
-  border-radius: 5px;
-  background: ${({ theme }) => theme["tomato-100"]};
-`
-
-export const Orders = styled(Link)`
-  line-height: 0;
-  color: ${({ theme }) => theme["light-100"]};
   position: relative;
 
-  span {
+  span:first-of-type {
     position: absolute;
     top: -5rem;
     right: -5rem;
+
+    width: 20rem;
+    height: 20rem;
+
+    background: ${({ theme }) => theme["tomato-200"]};
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 20rem;
-    height: 20rem;
+    border-radius: 50%;
 
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-size: 14rem;
+  }
 
-    border-radius: 50%;
+  span:last-of-type {
+    display: none;
+  }
 
-    background: ${({ theme }) => theme["tomato-100"]};
+  @media (min-width: 1025px) {
+    height: 56rem;
+    padding-inline: 32rem;
+    border-radius: 5px;
+    background: ${({ theme }) => theme["tomato-200"]};
+
+    span:first-of-type {
+      display: none;
+    }
+
+    span:last-of-type {
+      display: block;
+    }
   }
 `
 
-export const LogOut = styled.button`
+export const NewDishButton = styled(Link)`
+  height: 56rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14rem;
+  color: ${({ theme }) => theme["light-100"]};
+
+  padding-inline: 32rem;
+  border-radius: 5px;
+
+  background: ${({ theme }) => theme["tomato-200"]};
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`
+
+export const ExitButton = styled.button`
   border: none;
   background: none;
   line-height: 0;
   color: ${({ theme }) => theme["light-100"]};
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `
