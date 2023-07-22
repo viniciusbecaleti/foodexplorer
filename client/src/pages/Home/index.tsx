@@ -1,5 +1,12 @@
+import { Container } from "./styles"
+
+import { Category } from "../../components/Category"
+
 export function Home() {
   return (
-    <h1>Page Home</h1>
+    <Container>
+      <Category />
+      <Category />
+    </Container>
   )
 }

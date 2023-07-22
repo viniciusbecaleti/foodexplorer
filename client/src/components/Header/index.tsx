@@ -9,7 +9,7 @@ import { Search } from "../Search"
 import { useWindowResize } from "../../hooks/useWindowResize"
 
 const user = {
-  admin: 0
+  admin: 1
 }
 
 export function Header() {
