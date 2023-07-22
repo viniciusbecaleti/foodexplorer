@@ -16,14 +16,12 @@ export const Slider = styled.div`
 const NavigationButtonBase = styled.button`
   position: absolute;
   top: 0;
-  width: 120rem;
+  width: ${({ disabled }) => disabled ? "40rem" : "160rem"};
   height: 100%;
   z-index: 2;
 
   display: flex;
   align-items: center;
-
-  padding-inline: 20rem;
 
   border: none;
   outline: none;
@@ -47,7 +45,7 @@ export const PrevButton = styled(NavigationButtonBase)`
 `
 
 export const NextButton = styled(NavigationButtonBase)`
-  justify-content: flex-end;
+  justify-content: end;
   right: 0;
   background: linear-gradient(90deg, transparent 0%, rgba(0,10,15,1) 100%);
 `

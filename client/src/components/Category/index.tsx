@@ -10,7 +10,6 @@ import "swiper/css/navigation"
 import "swiper/css/scrollbar"
 import "swiper/css/a11y"
 import "swiper/css/keyboard"
-import "./swiperCustom.css"
 
 import { Container, NextButton, PrevButton, Slider } from "./styles"
 
@@ -65,11 +64,11 @@ export function Category() {
           breakpoints={{
             640: {
               spaceBetween: 28,
-              slidesPerView: 2.4
+              slidesPerView: 2.5
             },
             1120: {
               spaceBetween: 28,
-              slidesPerView: 3.4
+              slidesPerView: 3.5
             }
           }}
           onInit={swiper => !swiper.isEnd && setIsNextEnabled(true)}
