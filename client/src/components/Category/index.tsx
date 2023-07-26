@@ -1,76 +1,67 @@
-import { Swiper, SwiperSlide } from "swiper/react"
+import { SwiperSlide } from "swiper/react"
 import { Navigation, A11y } from "swiper/modules"
 
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/a11y"
 
-import { Container } from "./styles"
+import { Container, SwiperContainer } from "./styles"
+
+import { DishType } from "../../contexts/DishesContext"
 
 import { Dish } from "../Dish"
 
-export function Category() {
+interface CategoryProps {
+  category: string
+  dishes: DishType[]
+}
+
+export function Category({ category, dishes }: CategoryProps) {
   return (
     <Container>
-      <h2>Refeições</h2>
+      <h2>{category}</h2>
 
-      <Swiper
+      <SwiperContainer
         modules={[Navigation, A11y]}
         spaceBetween={16}
         slidesPerView={1.5}
         navigation={{
           enabled: false
         }}
+        grabCursor={true}
         breakpoints={{
           425: {
             navigation: {
-              enabled: true
+              enabled: false
             },
+            grabCursor: true,
             spaceBetween: 16,
-            slidesPerView: 2
+            slidesPerView: 1.5
           },
           768: {
+            navigation: {
+              enabled: false
+            },
+            grabCursor: true,
             spaceBetween: 16,
-            slidesPerView: 3
+            slidesPerView: 2.5
           },
-          1024: {
+          1120: {
+            navigation: {
+              enabled: true
+            },
+            grabCursor: false,
             spaceBetween: 16,
-            slidesPerView: 3.5
+            slidesPerView: 3.3
           }
         }}
       >
-        <SwiperSlide>
-          <Dish />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Dish />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Dish />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Dish />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Dish />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Dish />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Dish />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <Dish />
-        </SwiperSlide>
-      </Swiper>
+        {dishes.map(dish => (
+          <SwiperSlide key={dish.id}>
+            <Dish dish={dish} />
+          </SwiperSlide>
+        ))}
+      </SwiperContainer>
     </Container>
   )
 }

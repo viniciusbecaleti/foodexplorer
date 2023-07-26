@@ -27,7 +27,7 @@ class CategoriesController {
     }
 
     await knex("categories").insert(category)
-    
+
     res.sendStatus(201)
   }
 }

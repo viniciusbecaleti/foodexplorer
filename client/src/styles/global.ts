@@ -1,6 +1,12 @@
 import { createGlobalStyle } from "styled-components"
 
 export const GlobalStyle = createGlobalStyle`
+  :root {
+    --swiper-navigation-size: 28px;
+    --swiper-navigation-sides-offset: 30px;
+    --swiper-navigation-color: white;
+  }
+
   * {
     margin: 0;
     padding: 0;

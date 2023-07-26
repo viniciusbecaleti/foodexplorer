@@ -33,7 +33,7 @@ export const MenuButton = styled.button`
   }
 `
 
-export const Logo = styled.div`
+export const Logo = styled(Link)`
   flex: 1;
 
   display: flex;

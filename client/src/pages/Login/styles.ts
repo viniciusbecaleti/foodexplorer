@@ -46,6 +46,10 @@ export const Form = styled.form`
     span {
       color: ${({ theme }) => theme["light-400"]};
     }
+
+    small {
+      color: ${({ theme }) => theme["light-700"]};
+    }
   }
 
   a {

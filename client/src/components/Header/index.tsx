@@ -5,15 +5,15 @@ import { Container, Content, ExitButton, InputWrapper, Logo, MenuButton, NewDish
 
 import logoImg from "../../assets/logo.svg"
 
+import { useAuth } from "../../hooks/useAuth"
+
 import { Input } from "../Input"
 import { MenuMobile } from "../MenuMobile"
 
-const user = {
-  admin: true
-}
-
 export function Header() {
   const [isMenuMobileVisiable, setIsMenuMobileVisiable] = useState(false)
+
+  const { user, logout } = useAuth()
 
   function openMenu() {
     setIsMenuMobileVisiable(true)
@@ -39,9 +39,9 @@ export function Header() {
             <List size={32} />
           </MenuButton>
 
-          <Logo>
+          <Logo to="/">
             <img src={logoImg} alt="" />
-            {user.admin && <span>admin</span>}
+            {user?.admin && <span>admin</span>}
           </Logo>
 
           <InputWrapper>
@@ -49,7 +49,7 @@ export function Header() {
             <Input type="text" placeholder="Busque por pratos ou ingredientes" />
           </InputWrapper>
 
-          {!user.admin ? (
+          {!user?.admin ? (
             <Orders to="/">
               <Receipt size={32} />
               <span>0</span>
@@ -57,11 +57,15 @@ export function Header() {
             </Orders>
           ): (
             <NewDishButton to="/novo-prato">
-            Novo prato
+              Novo prato
             </NewDishButton>
           )}
 
-          <ExitButton type="button" aria-label="Sair">
+          <ExitButton
+            type="button"
+            aria-label="Sair"
+            onClick={logout}
+          >
             <SignOut size={32} />
           </ExitButton>
         </Content>

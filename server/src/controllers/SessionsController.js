@@ -35,13 +35,21 @@ class SessionsController {
         id: user.id,
         name: user.name,
         email: user.email,
-        admin: user.admin
+        admin: !!user.admin
       }
     }, secret, {
       expiresIn
     })
 
-    return res.status(201).json({ token })
+    return res.status(201).json({
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        admin: !!user.admin
+      },
+      token
+    })
   }
 }
 

@@ -6,15 +6,21 @@ import { Login } from "./pages/Login"
 import { Register } from "./pages/Register"
 import { Home } from "./pages/Home"
 
-const authenticated = true
+import { useAuth } from "./hooks/useAuth"
+
+import { DishesProvider } from "./contexts/DishesContext"
 
 export function Router() {
-  return authenticated ? (
-    <Routes>
-      <Route path="/" element={<DefaultLayout />}>
-        <Route path="/" element={<Home />} />
-      </Route>
-    </Routes>
+  const { user } = useAuth()
+
+  return user ? (
+    <DishesProvider>
+      <Routes>
+        <Route path="/" element={<DefaultLayout />}>
+          <Route path="/" element={<Home />} />
+        </Route>
+      </Routes>
+    </DishesProvider>
   ) : (
     <Routes>
       <Route path="/" element={<Login />} />

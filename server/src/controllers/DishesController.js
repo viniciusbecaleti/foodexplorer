@@ -6,7 +6,6 @@ class DishesController {
   async index(req, res) {
     const { q } = req.query
 
-    // const dishesByCategory = []
     await knex.transaction(async trx => {
       const dishes = await trx("dishes")
         .select([
@@ -44,10 +43,10 @@ class DishesController {
       })
 
       const dishesByCategory = dishesWithIngredients.reduce((categoriesWithDishes, current) => {
-        if (!categoriesWithDishes.find(item => item.category === current.category_name)) {
-          categoriesWithDishes.push({ category: current.category_name, dishes: [current] })
+        if (!categoriesWithDishes.find(item => item.category_name === current.category_name)) {
+          categoriesWithDishes.push({ category_name: current.category_name, dishes: [current] })
         } else {
-          const index = categoriesWithDishes.findIndex(item => item.category === current.category_name)
+          const index = categoriesWithDishes.findIndex(item => item.category_name === current.category_name)
           categoriesWithDishes[index].dishes.push(current)
         }
 
@@ -66,8 +65,6 @@ class DishesController {
       category_id,
       ingredients
     } = req.body
-
-    console.log(req.body)
 
     if (!name) {
       throw new AppError("Name is required")
