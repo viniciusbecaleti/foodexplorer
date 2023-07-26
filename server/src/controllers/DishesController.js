@@ -57,6 +57,20 @@ class DishesController {
     })
   }
 
+  async show(req, res) {
+    const { dish_id } = req.params
+
+    await knex.transaction(async trx => {
+      const dish = await trx("dishes").select("*").where({ id: dish_id }).first()
+      const ingredients = await trx("ingredients").select("*").where({ dish_id })
+
+      return res.json({
+        ...dish, ingredients
+      })
+    })
+
+  }
+
   async create(req, res) {
     const {
       name,

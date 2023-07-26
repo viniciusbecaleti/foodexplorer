@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export const Container = styled.header`
+  grid-area: header;
   background: ${({ theme }) => theme["dark-600"]};
 `
 
@@ -57,7 +58,7 @@ export const Logo = styled(Link)`
   }
 `
 
-export const InputWrapper = styled.div`
+export const SearchForm = styled.form`
   flex: 1;
 
   height: 56rem;

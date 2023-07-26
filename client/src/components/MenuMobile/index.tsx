@@ -1,8 +1,9 @@
-import { useEffect } from "react"
+import { FormEvent, useEffect, useState } from "react"
 import { MagnifyingGlass, X } from "@phosphor-icons/react"
 
-import { Container, Content, Header, InputWrapper } from "./styles"
+import { Container, Content, Header, SearchForm } from "./styles"
 import { Input } from "../Input"
+import { useDishes } from "../../hooks/useDishes"
 
 interface MenuMobileProps {
   isMenuMobileVisiable: boolean
@@ -10,6 +11,16 @@ interface MenuMobileProps {
 }
 
 export function MenuMobile({ isMenuMobileVisiable, onCloseMenu }: MenuMobileProps) {
+  const { getDishes } = useDishes()
+
+  const [search, setSeach] = useState("")
+
+  function handleSearch(event: FormEvent) {
+    event.preventDefault()
+    getDishes(search)
+    onCloseMenu()
+  }
+
   useEffect(() => {
     document.body.style.overflowY = isMenuMobileVisiable ? "hidden" : "auto"
   }, [isMenuMobileVisiable])
@@ -28,10 +39,15 @@ export function MenuMobile({ isMenuMobileVisiable, onCloseMenu }: MenuMobileProp
       </Header>
 
       <Content>
-        <InputWrapper>
+        <SearchForm onSubmit={handleSearch}>
           <MagnifyingGlass size={24} weight="bold" />
-          <Input type="text" placeholder="Busque por pratos ou ingredientes" />
-        </InputWrapper>
+          <Input
+            type="text"
+            placeholder="Busque por pratos ou ingredientes"
+            value={search}
+            onChange={({ target }) => setSeach(target.value)}
+          />
+        </SearchForm>
       </Content>
     </Container>
   )

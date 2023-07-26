@@ -1,8 +1,9 @@
 import styled from "styled-components"
 
 export const Container = styled.footer`
-  background: ${({ theme }) => theme["dark-600"]};
+  grid-area: footer;
   padding-block: 24rem;
+  background: ${({ theme }) => theme["dark-600"]};
 `
 
 export const Content = styled.div`

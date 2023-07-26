@@ -11,3 +11,5 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 48rem;
 `
+
+export const DishInfo = styled.div``

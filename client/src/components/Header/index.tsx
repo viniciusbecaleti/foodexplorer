@@ -1,19 +1,22 @@
-import { useState } from "react"
+import { FormEvent, useState, } from "react"
 import { List, MagnifyingGlass, Receipt, SignOut } from "@phosphor-icons/react"
 
-import { Container, Content, ExitButton, InputWrapper, Logo, MenuButton, NewDishButton, Orders } from "./styles"
+import { Container, Content, ExitButton, SearchForm, Logo, MenuButton, NewDishButton, Orders } from "./styles"
 
 import logoImg from "../../assets/logo.svg"
 
 import { useAuth } from "../../hooks/useAuth"
+import { useDishes } from "../../hooks/useDishes"
 
 import { Input } from "../Input"
 import { MenuMobile } from "../MenuMobile"
 
 export function Header() {
   const [isMenuMobileVisiable, setIsMenuMobileVisiable] = useState(false)
+  const [search, setSeach] = useState("")
 
   const { user, logout } = useAuth()
+  const { getDishes } = useDishes()
 
   function openMenu() {
     setIsMenuMobileVisiable(true)
@@ -21,6 +24,11 @@ export function Header() {
 
   function closeMenu() {
     setIsMenuMobileVisiable(false)
+  }
+
+  function handleSearch(event: FormEvent) {
+    event.preventDefault()
+    getDishes(search)
   }
 
   return (
@@ -44,10 +52,15 @@ export function Header() {
             {user?.admin && <span>admin</span>}
           </Logo>
 
-          <InputWrapper>
+          <SearchForm onSubmit={handleSearch}>
             <MagnifyingGlass size={24} weight="bold" />
-            <Input type="text" placeholder="Busque por pratos ou ingredientes" />
-          </InputWrapper>
+            <Input
+              type="text"
+              placeholder="Busque por pratos ou ingredientes"
+              value={search}
+              onChange={({ target }) => setSeach(target.value)}
+            />
+          </SearchForm>
 
           {!user?.admin ? (
             <Orders to="/">

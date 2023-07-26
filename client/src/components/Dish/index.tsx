@@ -7,6 +7,7 @@ import { useAuth } from "../../hooks/useAuth"
 import { DishType } from "../../contexts/DishesContext"
 
 import { Button } from "../Button"
+import { Link } from "react-router-dom"
 
 interface DishProps {
   dish: DishType
@@ -27,7 +28,9 @@ export function Dish({ dish }: DishProps) {
         </button>
       )}
       <img src={import.meta.env.VITE_API_BASE_URL + `/files/${dish.image}`} alt="" />
-      <h3>{dish.name}</h3>
+      <Link to={`/dish/${dish.id}`}>
+        <h3>{dish.name}</h3>
+      </Link>
       <p>{dish.description}</p>
       <strong>R$ 79,97</strong>
       {!user?.admin && (

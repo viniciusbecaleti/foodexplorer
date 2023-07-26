@@ -42,7 +42,7 @@ export const Content = styled.div`
   padding: 24rem;
 `
 
-export const InputWrapper = styled.div`
+export const SearchForm = styled.form`
   height: 56rem;
 
   display: flex;
