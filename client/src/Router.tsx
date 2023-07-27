@@ -10,6 +10,7 @@ import { Login } from "./pages/Login"
 import { Register } from "./pages/Register"
 import { Home } from "./pages/Home"
 import { Dish } from "./pages/Dish"
+import { NewDish } from "./pages/NewDish"
 
 
 export function Router() {
@@ -21,6 +22,7 @@ export function Router() {
         <Route path="/" element={<DefaultLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/dish/:dish_id" element={<Dish />} />
+          <Route path="/new" element={user.admin ? <NewDish /> : <Navigate to="/" />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>

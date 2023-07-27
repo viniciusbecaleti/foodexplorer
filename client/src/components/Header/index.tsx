@@ -69,7 +69,7 @@ export function Header() {
               <span>Pedidos (0)</span>
             </Orders>
           ): (
-            <NewDishButton to="/novo-prato">
+            <NewDishButton to="/new">
               Novo prato
             </NewDishButton>
           )}
