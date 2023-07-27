@@ -60,6 +60,11 @@ export const Container = styled.article`
   > div {
     width: 100%;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     button {
       width: 100%;
       padding-block: 4rem;
@@ -87,32 +92,11 @@ export const Container = styled.article`
 
     > div {
       width: auto;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16rem;
+      flex-direction: row;
 
       > button {
         padding: 12rem 24rem;
       }
     }
-  }
-`
-
-export const Quantity = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 14rem;
-
-  > button {
-    line-height: 0;
-    border: none;
-    background: none;
-    color: ${({ theme }) => theme["light-100"]};
-  }
-
-  @media (max-width: 599px) {
-    display: none;
   }
 `

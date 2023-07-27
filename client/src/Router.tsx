@@ -20,7 +20,7 @@ export function Router() {
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/dish/:id" element={<Dish />} />
+          <Route path="/dish/:dish_id" element={<Dish />} />
         </Route>
       </Routes>
     </DishesProvider>
