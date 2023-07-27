@@ -6,6 +6,8 @@ import { api } from "../../libs/axios"
 
 import { Container, DishInfo, Tags } from "./styles"
 
+import { useAuth } from "../../hooks/useAuth"
+
 import { Loading } from "../../components/Loading"
 import { Quantity } from "../../components/Quantity"
 
@@ -28,6 +30,8 @@ interface DishType {
 }
 
 export function Dish() {
+  const { user } = useAuth()
+
   const { dish_id } = useParams()
 
   const [dish, setDish] = useState<DishType | null>(null)
@@ -88,12 +92,18 @@ export function Dish() {
                   ))}
                 </Tags>
 
-                <Quantity
-                  quantity={quantity}
-                  onDecreaseQuantity={decreaseQuantity}
-                  onIncreaseQuantity={increaseQuantity}
-                  price={dish.price}
-                />
+                {!user?.admin ? (
+                  <Quantity
+                    quantity={quantity}
+                    onDecreaseQuantity={decreaseQuantity}
+                    onIncreaseQuantity={increaseQuantity}
+                    price={dish.price}
+                  />
+                ) : (
+                  <Link to="/editar">
+                    Editar prato
+                  </Link>
+                )}
               </div>
             </>
           )}

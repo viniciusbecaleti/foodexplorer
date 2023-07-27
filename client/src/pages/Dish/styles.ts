@@ -47,6 +47,22 @@ export const DishInfo = styled.div`
     line-height: 1.4;
   }
 
+  a:last-child {
+    color: ${({ theme }) => theme["light-100"]};
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-weight: 14;
+
+    padding: 12rem 24rem;
+    border-radius: 5px;
+
+    background: ${({ theme }) => theme["tomato-100"]};
+
+    &:hover {
+      background: ${({ theme }) => theme["tomato-200"]};
+    }
+  }
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     justify-items: center;
