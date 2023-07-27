@@ -23,7 +23,6 @@ export function Router() {
           <Route path="/" element={<Home />} />
           <Route path="/dish/:dish_id" element={<Dish />} />
           <Route path="/new" element={user.admin ? <NewDish /> : <Navigate to="/" />} />
-          <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
     </DishesProvider>
@@ -31,7 +30,6 @@ export function Router() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   )
 }
