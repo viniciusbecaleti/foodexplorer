@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes } from "react-router-dom"
 
 import { DefaultLayout } from "./layouts/DefaultLayout"
 
@@ -21,6 +21,7 @@ export function Router() {
         <Route path="/" element={<DefaultLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/dish/:dish_id" element={<Dish />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
     </DishesProvider>
@@ -28,6 +29,7 @@ export function Router() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   )
 }
